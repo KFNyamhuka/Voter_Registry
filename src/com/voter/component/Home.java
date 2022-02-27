@@ -42,7 +42,7 @@ public class Home extends javax.swing.JFrame {
         viewVotersButton.setText("Voters");
 
         registerVoterButton.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
-        registerVoterButton.setText("Register Voter");
+        registerVoterButton.setText("Register");
         registerVoterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerVoterButtonActionPerformed(evt);
