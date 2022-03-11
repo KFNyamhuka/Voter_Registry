@@ -40,6 +40,11 @@ public class Home extends javax.swing.JFrame {
 
         viewVotersButton.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         viewVotersButton.setText("Voters");
+        viewVotersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewVotersButtonActionPerformed(evt);
+            }
+        });
 
         registerVoterButton.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         registerVoterButton.setText("Register");
@@ -124,6 +129,12 @@ public class Home extends javax.swing.JFrame {
         RegisterVoter registerVoter = new RegisterVoter();
         registerVoter.setVisible(true);
     }//GEN-LAST:event_registerVoterButtonActionPerformed
+
+    private void viewVotersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewVotersButtonActionPerformed
+        this.dispose();
+        Voters voters = new Voters();
+        voters.setVisible(true);
+    }//GEN-LAST:event_viewVotersButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,10 @@
  */
 package com.voter.component;
 
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -27,21 +31,155 @@ public class Voters extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        backButton = new javax.swing.JButton();
+        close = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        votersTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        votersButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
+        jPanel1.setBackground(new java.awt.Color(0, 135, 65));
+
+        backButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        close.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        close.setForeground(new java.awt.Color(204, 0, 0));
+        close.setText(" X");
+        close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeMouseClicked(evt);
+            }
+        });
+
+        votersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Surname", "National ID", "DOB", "Address", "Polling Station", "Ward", "Constituency", "District", "Gender"
+            }
+        ));
+        jScrollPane1.setViewportView(votersTable);
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Registered Voters");
+
+        votersButton.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        votersButton.setText("Show Voters");
+        votersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                votersButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(votersButton)
+                .addGap(177, 177, 177)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(319, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backButton)
+                    .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(votersButton)
+                    .addComponent(jLabel1))
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        this.dispose();
+        Home home = new Home();
+        home.setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_closeMouseClicked
+
+    private void votersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_votersButtonActionPerformed
+       
+        String url = "jdbc:mysql://localhost:3306/voter";
+        String user = "root";
+        String pass = "";
+        try(Connection connection = DriverManager.getConnection(url, user, pass)){
+        Statement statement = connection.createStatement();
+        String sql = "select * from voters";
+        ResultSet rs = statement.executeQuery(sql);
+        
+        while(rs.next()){
+            //looping through data set
+            String firstName = rs.getString("first_name");
+            String surname = rs.getString("surname");
+            String nationalID = rs.getString("national_id");
+            String dob = rs.getString("dob");
+            String address = rs.getString("address");
+            String pollingStation = rs.getString("polling_station");
+            String ward = rs.getString("ward");
+            String constituency = rs.getString("constituency");
+            String district = rs.getString("district");
+            String gender = rs.getString("gender");
+            
+            //string array to load data into jTable
+            String tbData[] = {firstName,surname,nationalID,dob,address,pollingStation,ward,constituency,district,gender};
+            DefaultTableModel tableModel = (DefaultTableModel) votersTable.getModel();
+            
+            //add string array data into jTable
+            tableModel.addRow(tbData);
+        }
+        connection.close();
+        
+        votersButton.setVisible(false);
+      
+//            else {
+//                JOptionPane.showMessageDialog(null, "Sorry no voter data to display");
+//            }
+//       }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Failed to get voter data, try again later");
+           
+        }
+    }//GEN-LAST:event_votersButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +217,12 @@ public class Voters extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
+    private javax.swing.JLabel close;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton votersButton;
+    private javax.swing.JTable votersTable;
     // End of variables declaration//GEN-END:variables
 }
