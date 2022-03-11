@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="voter">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/voter.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

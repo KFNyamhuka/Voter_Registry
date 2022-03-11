@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="voter1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jcalendar.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mysql-connector-java-5.1.23-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jcalendar-1.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
