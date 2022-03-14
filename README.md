@@ -4,9 +4,9 @@ For easy testing we have added voter database in com.voter.resource, you can imp
 Kindly run the main class to initiate the program
 
 # Developers 
-Makhosonke Ndlovu R104644A
-Loveton Simanyiwa R213638Z
-Kenneth Francis Nyamhuka R211542N
-Morris Baradza R212813P
-Stanson Vheremu R212178R
+Makhosonke Ndlovu R104644A,
+Loveton Simanyiwa R213638Z,
+Kenneth Francis Nyamhuka R211542N,
+Morris Baradza R212813P,
+Stanson Vheremu R212178R and
 Lovemore Chasowa R211772W
