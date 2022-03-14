@@ -7,16 +7,16 @@ For easy testing we have added voter database in com.voter.resource, you can imp
 -After logging in, two option are available. The first one is for registering a new voter, the second one is for populating the registered voters.
 -Under 'Register', the following mandatory voter information is required for input for one to qualify to vote:
 
-NAME
-SURNAME
-ID NUMBER
-POLLING STATION
-WARD
-CONSTITUENCY
-DISTRICT
-DATE OF BIRTH
-ADDRESS
-GENDER
+NAME;
+SURNAME;
+ID NUMBER;
+POLLING STATION;
+WARD;
+CONSTITUENCY;
+DISTRICT;
+DATE OF BIRTH;
+ADDRESS;
+GENDER;
 
 -After capturing of the above information is complete, the data is saved onto the database for storage.
 -The voter's roll is accessible by clicking on the 'VOTERS' tab.
